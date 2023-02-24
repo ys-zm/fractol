@@ -24,7 +24,7 @@
 // }
 
 //check the input is valid
-size_t	check_fractol(int argc, char **argv, t_fractol* frac)
+int	check_fractol(int argc, char **argv, t_fractol* frac)
 {
 	if (argc < 2)
 		return (ft_error_msg());
@@ -43,14 +43,13 @@ size_t	init_frac(t_fractol* frac)
 	if (!(frac->mlx))
 		return (ERROR);
 	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
-	if (!(frac->img) || (mlx_image_to_window(frac->mlx, frac->img, 0, 0) < 0))
+	if (!(frac->img))
 		return (ERROR);
 	frac->iter = 50;
-	printf("hello1");
 	draw_mandelbrot(frac);
-	printf("hello2");
+	//double test = pix_to_coord(2);
+	//printf("test: %f", test);
 	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
-	printf("hello3");
 	return (0);
 	
 }

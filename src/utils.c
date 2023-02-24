@@ -16,7 +16,7 @@ void    ft_putstr(char *str)
     write(1, "\n", 1);
 }
 
-ssize_t	ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && *s2)
 	{
@@ -28,7 +28,7 @@ ssize_t	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-ssize_t    ft_error_msg(void)
+int    ft_error_msg(void)
 {
     ft_putstr("Wrong input.");
     ft_putstr("Usage: ./fractol <fractol-name>.");
