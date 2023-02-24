@@ -45,11 +45,8 @@ size_t	init_frac(t_fractol* frac)
 	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
 	if (!(frac->img))
 		return (ERROR);
-	frac->iter = 50;
+	set_mandelbrot_start(frac);
 	draw_mandelbrot(frac);
-	//double test = pix_to_coord(2);
-	//printf("test: %f", test);
-	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 	return (0);
 	
 }
@@ -61,6 +58,8 @@ int32_t	main(int argc, char **argv)
 		return (ERROR);
 	init_frac(&frac);
 	mlx_loop_hook(frac.mlx, &keys, &frac);
+	mlx_scroll_hook(frac.mlx, &scroll, &frac);
+	mlx_image_to_window(frac.mlx, frac.img, 0, 0);
 	mlx_loop(frac.mlx);
 	return (0);
 }
