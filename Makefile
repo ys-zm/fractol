@@ -5,7 +5,8 @@ C_FLAGS = -Wall -Wextra -Werror -g
 SRC_FILES = fractol.c \
 			keys.c \
 			utils.c \
-			mandelbrot.c
+			mandelbrot.c \
+			julia.c
 			
 OBJ_DIR = obj
 SRC_DIR = src

@@ -1,28 +1,5 @@
 #include "fractol.h"
 
-//should the size of the window be adjustable
-// static void ft_error(void)
-// {
-// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-// 	exit(EXIT_FAILURE);
-// }
-
-// Print the window width and height.
-// static void ft_hook(void* param)
-// {
-// 	const mlx_t* mlx = param;
-
-// 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-// }
-
-// static void esp(void* param)
-// {
-//     mlx_t* mlx = param;
-    
-// 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-// 		mlx_close_window(mlx);
-// }
-
 //check the input is valid
 int	check_fractol(int argc, char **argv, t_fractol* frac)
 {
@@ -30,7 +7,7 @@ int	check_fractol(int argc, char **argv, t_fractol* frac)
 		return (ft_error_msg());
 	if (ft_strcmp(argv[1], "Mandelbrot") == 0 && argc == 2)
 		frac->name = "Mandelbrot";
-	else if (ft_strcmp(argv[1], "Julia") && argc == 4)
+	else if (ft_strcmp(argv[1], "Julia") == 0 && argc == 4)
 		frac->name = "Julia";
 	else
 		return (ft_error_msg());
@@ -45,8 +22,9 @@ size_t	init_frac(t_fractol* frac)
 	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
 	if (!(frac->img))
 		return (ERROR);
-	set_mandelbrot_start(frac);
-	draw_mandelbrot(frac);
+	// set_mandelbrot_start(frac);
+	// draw_mandelbrot(frac);
+	julia(frac);
 	return (0);
 	
 }
@@ -56,7 +34,9 @@ int32_t	main(int argc, char **argv)
 	
 	if (check_fractol(argc, argv, &frac))
 		return (ERROR);
+	set_julia_start(&frac, argv);
 	init_frac(&frac);
+	//mlx_loop_hook(frac.mlx, &mouse, &frac);
 	mlx_loop_hook(frac.mlx, &keys, &frac);
 	mlx_scroll_hook(frac.mlx, &scroll, &frac);
 	mlx_image_to_window(frac.mlx, frac.img, 0, 0);

@@ -36,28 +36,68 @@ int    ft_error_msg(void)
     return (ERROR);
 }
 
-// void    colour_all(t_fractol* frac)
-// {
-//     size_t  i;
-//     size_t  r;
-
-//     i = 0;
-//     while (i < HEIGHT)
-//     {
-//         r = 0;
-//         while(r < WIDTH)
-//         {
-//             mlx_put_pixel(frac->img, r, i, 0xFF0000FF);
-//             r++;
-//         }
-//         i++;
-//     }
-// }
-
-void    draw(t_fractol* frac)
+    static int	is_space(char c)
 {
-    if (ft_strcmp(frac->name, "Mandelbrot"))
-        draw_mandelbrot(frac);
-    else
-        return ;
+	return (c == ' ' || c == '\t' || c == '\r'
+		|| c == '\n' || c == '\v' || c == '\f');
+}
+
+int	ft_atoi(const char *str)
+{
+	int	x;
+	int	sign;
+
+	x = 0;
+	sign = 1;
+	while (is_space(*str))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign *= -1;
+		str++;
+	}
+    if (*str == '0')
+        str++;
+    if (*str == '.')
+        str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		x = (x * 10) + (*str - '0');
+		str++;
+	}
+    if (*str == '.')
+        str++;
+    while (*str >= '0' && *str <= '9')
+	{
+		x = (x * 10) + (*str - '0');
+		str++;
+	}
+	return (x * sign);
+}
+
+double  ft_atod(char *str)
+{
+    int     x;
+    int     deci;
+    double  num;
+
+    deci = 0;
+    x = ft_atoi(str);
+    while (is_space(*str))
+		str++;
+	if (*str == '-' || *str == '+')
+        str++;
+    while (str &&  *str >= '0' && *str <= '9')
+        str++;
+    if (*str == '.')
+        str++;
+    while (str &&  *str >= '0' && *str <= '9')
+    {
+        str++;
+        deci++;
+    }
+    printf("x: %d\n", x);
+    num = (double)x / pow(10, deci);
+    return (num);
 }

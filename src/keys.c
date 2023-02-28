@@ -13,22 +13,22 @@ void keys(void *param)
 	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_RIGHT))
 	{
-		frac->x += 0.02;
+		frac->x += (frac->xmax - frac->xmin) * 0.1;
 		draw_mandelbrot(frac);
 	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_LEFT))
 	{
-		frac->x -= 0.02;
+		frac->x -= (frac->xmax - frac->xmin) * 0.1;
 		draw_mandelbrot(frac);
 	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_UP))
 	{
-		frac->y -= 0.02;
+		frac->y -= (frac->ymax - frac->ymin) * 0.1;
 		draw_mandelbrot(frac);
 	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_DOWN))
 	{
-		frac->y += 0.02;
+		frac->y += (frac->ymax - frac->ymin) * 0.1;
 		draw_mandelbrot(frac);
 	}
 }
@@ -36,20 +36,32 @@ void keys(void *param)
 void	scroll(double ydelta, double xdelta, void* param)
 {
 	t_fractol*	frac;
+	int32_t	x;
+	int32_t	y;
+	double	y_coord;
+	double	x_coord;
 
 	frac = param;
+	mlx_get_mouse_pos(frac->mlx, &x, &y);
 	(void)ydelta;
-	if (xdelta < 0)
+	if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)
 	{
-		frac->max *= 0.8;
-		frac->min *= 0.8;
-		frac->zoom *= 1.5;
-	}
-	else if (xdelta > 0)
-	{
-		frac->min *= 1.2;
-		frac->max *= 1.2;
-		frac->zoom *= 0.9;
+		y_coord = pix_to_coord(frac->ymax, frac->ymin, y);
+		x_coord = pix_to_coord(frac->xmax, frac->xmin, x);
+		if (xdelta < 0)
+		{
+			frac->ymax += (frac->ymax - frac->ymin) * 0.1 * (y / HEIGHT);
+			frac->ymin -= (frac->ymax - frac->ymin) * 0.1 * (1 - (y / HEIGHT));
+			frac->xmax += (frac->xmax - frac->xmin) * 0.1 * (1 - (x / WIDTH));
+			frac->xmin -= (frac->xmax - frac->xmin) * 0.1 * (x / WIDTH);
+		}
+		else if (xdelta > 0)
+		{
+			frac->ymin += (frac->ymax - frac->ymin) * 0.1 * (1 - (y / HEIGHT));
+			frac->ymax -= (frac->ymax - frac->ymin) * 0.1 * (y / HEIGHT);
+			frac->xmin += (frac->xmax - frac->xmin) * 0.1 * (x / WIDTH);
+			frac->xmax -= (frac->xmax - frac->xmin) * 0.1 * (1 - (x / WIDTH));
+		}
 	}
 	draw_mandelbrot(frac);
 }

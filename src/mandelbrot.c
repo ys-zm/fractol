@@ -2,35 +2,36 @@
 
 //---FORMULA TO TRANSLATE COORDINATE FROM PIXEL
 // x coord = x_min + (x_pix / x_totalpix)(x_max - x_min)
-double   pix_to_coord(t_fractol* frac, int pix)
+double   pix_to_coord(double max, double min, int pix)
 {
     double  coord;
     double  temp;
 
     temp = (double)pix / HEIGHT;
-    coord = (frac->min) + temp * (frac->max - frac->min);
+    coord = (min) + temp * (max - min);
     return (coord);
 }
 
 
 void    set_mandelbrot_start(t_fractol* frac)
 {
-    frac->iter = 100;
-    frac->min = -2;
-    frac->max = 2;
+    frac->iter = 120;
+    frac->xmin = -2;
+    frac->xmax = 2;
+    frac->ymin = -2;
+    frac->ymax = 2;
     frac->x = 0;
     frac->y = 0;
-    frac->zoom = 1;
 }
 
 //---FORMULA FOR MANDELBROT
 // f(new_pos) = (zx + zy)(zx + zy) + (cx + cy)
-int    mandelbrot(t_fractol* frac, double c_re, double c_im)
+int    equation(t_fractol* frac, double c_re, double c_im)
 {
     double  re;
     double  im;
     double  store_re;
-    int  iter_count;
+    int     iter_count;
 
     re = 0;
     im = 0;
@@ -57,15 +58,11 @@ void    draw_mandelbrot(t_fractol* frac)
     while ( y < HEIGHT)
     {
         x = 0;
+        im = pix_to_coord(frac->ymax, frac->ymin, y) + frac->y;
         while (x < WIDTH)
         {
-            re = pix_to_coord(frac, x) + frac->x;
-            // printf("re: %f", re);
-            im = pix_to_coord(frac, y) + frac->y;
-            // printf("im: %f", im);
-            iter_count = mandelbrot(frac, re, im);
-            //printf("itercount: %d\n", iter_count);
-            // printf("min: %f", frac->min);
+            re = pix_to_coord(frac->xmax, frac->xmin, x) + frac->x;
+            iter_count = equation(frac, re, im);
             if (iter_count == frac->iter)
                 mlx_put_pixel(frac->img, x, y, 0xFF0000FF);
             else
