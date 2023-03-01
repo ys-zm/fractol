@@ -1,21 +1,29 @@
 #include "fractol.h"
 
 //---FORMULA TO TRANSLATE COORDINATE FROM PIXEL
-// x coord = x_min + (x_pix / x_totalpix)(x_max - x_min)
+// x coord = min + (x_pix / x_totalpix)(x_max - x_min)
 double   pix_to_coord(double max, double min, int pix)
 {
     double  coord;
     double  temp;
 
-    temp = (double)pix / HEIGHT;
-    coord = (min) + temp * (max - min);
+    if (WIDTH < HEIGHT)
+    {
+        temp = (double)pix / WIDTH;
+        coord = (min) + temp * (max - min);
+    }
+    else
+    {
+        temp = (double)pix / HEIGHT;
+        coord = (min) + temp * (max - min);
+    }
     return (coord);
 }
 
 
 void    set_mandelbrot_start(t_fractol* frac)
 {
-    frac->iter = 120;
+    frac->iter = 127;
     frac->xmin = -2;
     frac->xmax = 2;
     frac->ymin = -2;
@@ -33,8 +41,8 @@ int    equation(t_fractol* frac, double c_re, double c_im)
     double  store_re;
     int     iter_count;
 
-    re = 0;
-    im = 0;
+    re = c_re;
+    im = c_im;
     iter_count = 0;
     while((re * re) + (im * im) < 4 && iter_count < frac->iter)
     {   
@@ -58,20 +66,12 @@ void    draw_mandelbrot(t_fractol* frac)
     while ( y < HEIGHT)
     {
         x = 0;
-        im = pix_to_coord(frac->ymax, frac->ymin, y) + frac->y;
+        im = pix_to_coord(frac->ymax, frac->ymin, y);
         while (x < WIDTH)
         {
-            re = pix_to_coord(frac->xmax, frac->xmin, x) + frac->x;
+            re = pix_to_coord(frac->xmax, frac->xmin, x);
             iter_count = equation(frac, re, im);
-            if (iter_count == frac->iter)
-                mlx_put_pixel(frac->img, x, y, 0xFF0000FF);
-            else
-            {
-                iter_count = iter_count<<24;
-                iter_count *= 15;
-                mlx_put_pixel(frac->img, x, y, 0x008080FF + iter_count);
-            }
-                
+            colour_fractal(frac, x, y, iter_count);
             x++;
         }
         y++;

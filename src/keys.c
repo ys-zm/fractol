@@ -12,25 +12,14 @@ void keys(void *param)
 		mlx_terminate(frac->mlx);
 	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_RIGHT))
-	{
 		frac->x += (frac->xmax - frac->xmin) * 0.1;
-		draw_mandelbrot(frac);
-	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_LEFT))
-	{
 		frac->x -= (frac->xmax - frac->xmin) * 0.1;
-		draw_mandelbrot(frac);
-	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_UP))
-	{
 		frac->y -= (frac->ymax - frac->ymin) * 0.1;
-		draw_mandelbrot(frac);
-	}
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_DOWN))
-	{
 		frac->y += (frac->ymax - frac->ymin) * 0.1;
-		draw_mandelbrot(frac);
-	}
+	draw(frac);
 }
 
 void	scroll(double ydelta, double xdelta, void* param)

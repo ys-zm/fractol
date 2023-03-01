@@ -6,7 +6,10 @@ SRC_FILES = fractol.c \
 			keys.c \
 			utils.c \
 			mandelbrot.c \
-			julia.c
+			julia.c \
+			colour.c \
+			draw.c \
+			input_check.c
 			
 OBJ_DIR = obj
 SRC_DIR = src

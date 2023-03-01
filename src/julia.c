@@ -2,7 +2,7 @@
 
 void    set_julia_start(t_fractol* frac, char **argv)
 {
-    frac->iter = 120;
+    frac->iter = 127;
     frac->xmin = -2;
     frac->xmax = 2;
     frac->ymin = -2;
@@ -11,7 +11,7 @@ void    set_julia_start(t_fractol* frac, char **argv)
     frac->y = ft_atod(argv[3]);
 }
 
-void    julia(t_fractol* frac)
+void    draw_julia(t_fractol* frac)
 {
     int  x;
     int  y;
@@ -30,15 +30,7 @@ void    julia(t_fractol* frac)
         {
             re = pix_to_coord(frac->xmax, frac->xmin, x) + frac->x;
             iter_count = equation(frac, re, im);
-            if (iter_count == frac->iter)
-                mlx_put_pixel(frac->img, x, y, 0xFF0000FF);
-            else
-            {
-                iter_count = iter_count<<24;
-                iter_count *= 15;
-                mlx_put_pixel(frac->img, x, y, 0x008080FF + iter_count);
-            }
-                
+            colour_fractal(frac, x, y, iter_count); 
             x++;
         }
         y++;
