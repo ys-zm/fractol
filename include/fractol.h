@@ -12,9 +12,16 @@
 
 # define ERROR -1
 
-# define WIDTH 1000
-# define HEIGHT 600
+# define WIDTH 1080
+# define HEIGHT 720
 
+typedef struct s_rgba
+{
+    int r;
+    int g;
+    int b;
+    int a;
+}   t_rgba;
 
 typedef struct s_fractol
 {
@@ -29,6 +36,9 @@ typedef struct s_fractol
     double          ymin;
     double          ymax;
     double          scroll;
+    double          im;
+    double          re;
+    t_rgba         rgba; 
 }   t_fractol;
 
 //STR UTILS

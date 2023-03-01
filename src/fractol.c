@@ -10,7 +10,7 @@ void	set_settings(t_fractol* frac, char **argv)
 
 size_t	init_frac(t_fractol* frac)
 {
-	frac->mlx = mlx_init(WIDTH, HEIGHT, frac->name, true);
+	frac->mlx = mlx_init(WIDTH, HEIGHT, frac->name, false);
 	if (!(frac->mlx))
 		return (ERROR);
 	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);

@@ -44,7 +44,7 @@ int    equation(t_fractol* frac, double c_re, double c_im)
     re = c_re;
     im = c_im;
     iter_count = 0;
-    while((re * re) + (im * im) < 4 && iter_count < frac->iter)
+    while((re * re) + (im * im) <= 4 && iter_count < frac->iter)
     {   
         store_re = re;
         re = (re * re) - (im * im) + c_re;
@@ -66,10 +66,10 @@ void    draw_mandelbrot(t_fractol* frac)
     while ( y < HEIGHT)
     {
         x = 0;
-        im = pix_to_coord(frac->ymax, frac->ymin, y);
+        im = pix_to_coord(frac->ymax, frac->ymin, y) + frac->y;
         while (x < WIDTH)
         {
-            re = pix_to_coord(frac->xmax, frac->xmin, x);
+            re = pix_to_coord(frac->xmax, frac->xmin, x) + frac->x;
             iter_count = equation(frac, re, im);
             colour_fractal(frac, x, y, iter_count);
             x++;
