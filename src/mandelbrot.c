@@ -20,14 +20,17 @@ double   pix_to_coord(double max, double min, int pix)
     return (coord);
 }
 
-
 void    set_mandelbrot_start(t_fractol* frac)
 {
-    frac->iter = 127;
+    frac->iter = 256;
+    // frac->x_ends.min = -2;
+    // frac->x_ends.max = 2;
+    // frac->y_ends.min = -2;
+    // frac->y_ends.max = 2;
     frac->xmin = -2;
     frac->xmax = 2;
-    frac->ymin = -2;
-    frac->ymax = 2;
+    frac->ymax = -2;
+    frac->ymin = 2;
     frac->x = 0;
     frac->y = 0;
 }
@@ -56,11 +59,11 @@ int    equation(t_fractol* frac, double c_re, double c_im)
 
 void    draw_mandelbrot(t_fractol* frac)
 {
-    int  x;
-    int  y;
+    int     x;
+    int     y;
     double  re;
     double  im;
-    int  iter_count;
+    int     iter_count;
 
     y = 0;
     while ( y < HEIGHT)

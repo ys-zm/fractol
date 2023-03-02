@@ -8,20 +8,27 @@
 # include "MLX42/MLX42.h"
 # include <stdbool.h>
 # include <string.h>
-#include <math.h>
+# include <math.h>
 
 # define ERROR -1
 
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 600
+# define HEIGHT 600
 
-typedef struct s_rgba
+//make it a union
+typedef struct s_ends
+{
+    double  max;
+    double  min;
+}   t_ends;
+
+union rgba
 {
     int r;
     int g;
     int b;
     int a;
-}   t_rgba;
+};
 
 typedef struct s_fractol
 {
@@ -31,19 +38,22 @@ typedef struct s_fractol
     int             iter;
     double          x;
     double          y;
+    t_ends          x_ends;
+    t_ends          y_ends;
     double          xmin;
     double          xmax;
     double          ymin;
     double          ymax;
-    double          scroll;
     double          im;
     double          re;
-    t_rgba         rgba; 
 }   t_fractol;
+
 
 //STR UTILS
 int	    ft_strcmp(const char *s1, const char *s2);
 double  ft_atod(char *str);
+int	    is_space(char c);
+int     ft_isdigit(char c);
 
 //KEYS AND SCROLL
 void    keys(void *param);

@@ -17,6 +17,7 @@ size_t	init_frac(t_fractol* frac)
 	if (!(frac->img))
 		return (ERROR);
 	draw(frac);
+	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 	return (0);
 }
 
@@ -30,8 +31,7 @@ int32_t	main(int argc, char **argv)
 	init_frac(&frac);
 	//mlx_loop_hook(frac.mlx, &mouse, &frac);
 	mlx_loop_hook(frac.mlx, &keys, &frac);
-	mlx_scroll_hook(frac.mlx, &scroll, &frac);
-	mlx_image_to_window(frac.mlx, frac.img, 0, 0);
+	mlx_scroll_hook(frac.mlx, &scroll, &frac);	
 	mlx_loop(frac.mlx);
 	return (0);
 }

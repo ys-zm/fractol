@@ -28,14 +28,35 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-//check the input is valid
+int	check_double(char* str)
+{
+	while (str && is_space(*str))
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (ft_isdigit(*str))
+		str++;
+	if (*str == '\0')
+		return (1);
+	if (*str == '.')
+		str++;
+	if (!ft_isdigit(*str))
+		return (0);
+	while (ft_isdigit(*str))
+		str++;
+	if (*str == '\0')
+		return (1);
+	return (0);
+}
+
 int	check_fractol(int argc, char **argv, t_fractol* frac)
 {
 	if (argc < 2)
 		return (ft_error_msg());
 	if (ft_strcmp(argv[1], "Mandelbrot") == 0 && argc == 2)
 		frac->name = "Mandelbrot";
-	else if (ft_strcmp(argv[1], "Julia") == 0 && argc == 4)
+	else if (ft_strcmp(argv[1], "Julia") == 0 && argc == 4 \
+	&& check_double(argv[2]) && check_double(argv[3]))
 		frac->name = "Julia";
 	else
 		return (ft_error_msg());
@@ -47,5 +68,6 @@ int    ft_error_msg(void)
     ft_putstr("Wrong input.");
     ft_putstr("Usage: ./fractol <fractol-name>.");
     ft_putstr("Fractol names: Mandelbrot || Julia xx.xx xx.xx");
+	ft_putstr("Add float values after Julia");
     return (ERROR);
 }
