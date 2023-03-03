@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-size_t  ft_strlen(char *str)
+static size_t	ft_strlen(char *str)
 {
     size_t  count;
 
@@ -10,7 +10,7 @@ size_t  ft_strlen(char *str)
     return (count);
 }
 
-void    ft_putstr(char *str)
+static void    ft_putstr(char *str)
 {
     write(1, str, ft_strlen(str));
     write(1, "\n", 1);
@@ -63,7 +63,7 @@ int	check_fractol(int argc, char **argv, t_fractol* frac)
 	return (0);
 }
 
-int    ft_error_msg(void)
+int	ft_error_msg(void)
 {
     ft_putstr("Wrong input.");
     ft_putstr("Usage: ./fractol <fractol-name>.");

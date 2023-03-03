@@ -3,13 +3,16 @@ CC = gcc
 C_FLAGS = -Wall -Wextra -Werror -g
 
 SRC_FILES = fractol.c \
-			keys.c \
-			utils.c \
+			input_check.c \
+			init.c \
+			double_conversion.c \
+			key_hooks.c \
+			scroll_hook.c \
 			mandelbrot.c \
 			julia.c \
-			colour.c \
 			draw.c \
-			input_check.c
+			colour.c \
+			utils.c \
 			
 OBJ_DIR = obj
 SRC_DIR = src
