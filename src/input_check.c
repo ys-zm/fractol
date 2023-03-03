@@ -13,7 +13,6 @@ static size_t	ft_strlen(char *str)
 static void    ft_putstr(char *str)
 {
     write(1, str, ft_strlen(str));
-    write(1, "\n", 1);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -25,6 +24,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
+	if (!*s1 || !*s2)
+		return (*(unsigned char *)s1 - *(unsigned char *)s2);
 	return (0);
 }
 
@@ -65,9 +66,9 @@ int	check_fractol(int argc, char **argv, t_fractol* frac)
 
 int	ft_error_msg(void)
 {
-    ft_putstr("Wrong input.");
-    ft_putstr("Usage: ./fractol <fractol-name>.");
-    ft_putstr("Fractol names: Mandelbrot || Julia xx.xx xx.xx");
-	ft_putstr("Add float values after Julia");
+    ft_putstr("Wrong input.\n");
+    ft_putstr("Usage: ./fractol <fractol-name>.\n");
+    ft_putstr("Fractol names: Mandelbrot || Julia xx.xx xx.xx\n");
+	ft_putstr("Add float values for the Julia set.\n");
     return (ERROR);
 }

@@ -16,5 +16,4 @@ void    colour_fractal(t_fractol *frac, int x, int y, int iter_count)
         mlx_put_pixel(frac->img, x, y, 0x000000FF);
     else
          mlx_put_pixel(frac->img, x, y, make_colours(iter_count));
-    
 }
