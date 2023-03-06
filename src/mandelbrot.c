@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:07 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/03 17:34:58 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/06 15:51:50 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ void    set_mandelbrot_start(t_fractol *frac)
     frac->x_ends.end = 2;
     frac->y_ends.start = 2;
     frac->y_ends.end = -2;
-    frac->x = 0;
-    frac->y = 0;
+    frac->pix.x = 0;
+    frac->pix.y = 0;
+    frac->win_size.width = 1080;
+    frac->win_size.height = 700;
+    frac->flag = 0;
+    frac->org.im = 0;
+    frac->org.re = 0;
+    frac->curr.im = 0;
+    frac->curr.re = 0;
+    centre_img(frac);
 }
 
 //---FORMULA FOR MANDELBROT

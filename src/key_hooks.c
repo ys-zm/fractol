@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 20:02:56 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/03 17:07:55 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/06 15:48:30 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	navigate(t_fractol *frac)
 {
 	if (mlx_is_key_down(frac->mlx, MLX_KEY_RIGHT))
-		frac->x += (frac->x_ends.end - frac->x_ends.start) * 0.1;
+		frac->pix.x += (frac->x_ends.end - frac->x_ends.start) * 0.1;
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_LEFT))
-		frac->x -= (frac->x_ends.end - frac->x_ends.start) * 0.1;
+		frac->pix.x -= (frac->x_ends.end - frac->x_ends.start) * 0.1;
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_UP))
-		frac->y -= (frac->y_ends.start - frac->y_ends.end) * 0.1;
+		frac->pix.y -= (frac->y_ends.start - frac->y_ends.end) * 0.1;
 	else if (mlx_is_key_down(frac->mlx, MLX_KEY_DOWN))
-		frac->y += (frac->y_ends.start - frac->y_ends.end) * 0.1;
+		frac->pix.y += (frac->y_ends.start - frac->y_ends.end) * 0.1;
 }
 
 static void	mouse_input(t_fractol *frac)
@@ -29,12 +29,23 @@ static void	mouse_input(t_fractol *frac)
 	int32_t		x;
 	int32_t		y;
 	
-	mlx_get_mouse_pos(frac->mlx, &x, &y);
-	if (mlx_is_key_down(frac->mlx, MLX_KEY_P))
+	if (mlx_is_mouse_down(frac->mlx, MLX_MOUSE_BUTTON_LEFT))
+		frac->flag = !(frac->flag);
+	if (frac->flag)
 	{
-		frac->im = pix_to_coord_y(frac->y_ends.start, frac->y_ends.end, y);
-		frac->re = pix_to_coord_x(frac->x_ends.start, frac->x_ends.end, x);
+		mlx_get_mouse_pos(frac->mlx, &x, &y);
+		frac->curr.im = pix_to_coord_y(frac->y_ends.start, frac->y_ends.end, y, frac);
+		frac->curr.re = pix_to_coord_x(frac->x_ends.start, frac->x_ends.end, x, frac);
 	}
+	draw(frac);
+}
+
+static void	switch_fracs(t_fractol *frac)
+{
+	if (ft_strcmp(frac->name, "Mandelbrot") == 0)
+		frac->name = "Julia";
+	else
+		frac->name = "Mandelbrot";
 	draw(frac);
 }
 
@@ -45,15 +56,6 @@ void nav_mouse_hooks(void *param)
 	frac = param;
 	navigate(frac);
 	mouse_input(frac);
-}
-
-static void	switch_fracs(t_fractol *frac)
-{
-	if (ft_strcmp(frac->name, "Mandelbrot") == 0)
-		frac->name = "Julia";
-	else
-		frac->name = "Mandelbrot";
-	draw(frac);
 }
 
 void	key_hooks(mlx_key_data_t keydata, void * param)

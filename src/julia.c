@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:31:57 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/03 17:35:05 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/06 15:53:27 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ void    set_julia_start(t_fractol* frac, char **argv)
 {
     if (argv)
     {
-        frac->im = ft_atod(argv[3]);
-        frac->re = ft_atod(argv[2]);
+        frac->curr.re = ft_atod(argv[2]);
+        frac->curr.im = ft_atod(argv[3]);
     }
     frac->iter = 100;
     frac->x_ends.start = -2;
     frac->x_ends.end = 2;
     frac->y_ends.start = 2;
     frac->y_ends.end = -2;
-    frac->x = 0;
-    frac->y = 0;
-    frac->org.re = frac->re;
-    frac->org.im = frac->im;
-    
+    frac->pix.x = 0;
+    frac->pix.y = 0;
+    frac->org.re = frac->curr.re;
+    frac->org.im = frac->curr.im;
+    frac->flag = 0;
+    frac->win_size.width = 1080;
+    frac->win_size.height = 700;
+    centre_img(frac);
 }
 
 // the +c is the same for all pixel coordinates
@@ -45,8 +48,8 @@ int    julia_equation(t_fractol* frac, double x, double y)
     while((re * re) + (im * im) <= 4 && iter_count < frac->iter)
     {   
         store_re = re;
-        re = (re * re) - (im * im) + frac->re;
-        im = 2 * store_re * im + frac->im;
+        re = (re * re) - (im * im) + frac->curr.re;
+        im = 2 * store_re * im + frac->curr.im;
         iter_count++;
     }
     return (iter_count);

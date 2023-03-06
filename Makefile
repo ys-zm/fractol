@@ -1,6 +1,6 @@
 NAME = fractol
 CC = gcc
-C_FLAGS = -Wall -Wextra -Werror -g
+C_FLAGS = -Wall -Wextra -Werror -Ofast
 
 SRC_FILES = fractol.c \
 			input_check.c \
@@ -13,13 +13,17 @@ SRC_FILES = fractol.c \
 			draw.c \
 			colour.c \
 			utils.c \
-			
+			resize.c  \
+			burning_ship.c
+
 OBJ_DIR = obj
 SRC_DIR = src
 MLX_DIR = MLX42
 
 INCLUDES = -Iinclude -I$(MLX_DIR)/include
 LIB_MLX = $(MLX_DIR)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+
+F_SAN = -g -fsanitize=address
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC_FILES:.c=.o)))
 
@@ -36,7 +40,7 @@ dlibmlx:
 	cmake --build ./MLX42/build -j4 
 
 $(NAME): $(OBJ)
-	$(CC) $^ $(LIB_MLX) -fsanitize=address $(INCLUDES) -o $@
+	$(CC) $^ $(LIB_MLX) $(INCLUDES) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)

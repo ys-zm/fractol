@@ -59,6 +59,8 @@ int	check_fractol(int argc, char **argv, t_fractol* frac)
 	else if (ft_strcmp(argv[1], "Julia") == 0 && argc == 4 \
 	&& check_double(argv[2]) && check_double(argv[3]))
 		frac->name = "Julia";
+	else if (ft_strcmp(argv[1], "BurningShip") == 0 && argc == 2)
+		frac->name = "BurningShip";
 	else
 		return (ft_error_msg());
 	return (0);
