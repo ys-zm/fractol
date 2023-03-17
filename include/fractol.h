@@ -84,8 +84,10 @@ void	set_settings(t_fractol *frac, char **argv);
 int	    ft_strcmp(const char *s1, const char *s2);
 int     smallest(int x, int y);
 int     ft_isdigit(char c);
-double  ft_atod(char *str);
 int	    is_space(char c);
+double  ft_atod(char *str);
+long    ft_atol(const char *str);
+int     ft_atoi(const char *str);
 
 //------------KEYS AND SCROLL HOOKS------------//
 void	zoom_scroll(double ydelta, double xdelta, void *param);

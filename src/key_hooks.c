@@ -36,6 +36,8 @@ static void	mouse_input(t_fractol *frac)
 		mlx_get_mouse_pos(frac->mlx, &x, &y);
 		frac->curr.im = pix_to_coord_y(frac->y_ends.start, frac->y_ends.end, y, frac);
 		frac->curr.re = pix_to_coord_x(frac->x_ends.start, frac->x_ends.end, x, frac);
+		printf("im: %f\n", frac->curr.im);
+		printf("re: %f\n", frac->curr.re);
 	}
 	draw(frac);
 }

@@ -1,20 +1,5 @@
 #include "fractol.h"
 
-static size_t	ft_strlen(char *str)
-{
-    size_t  count;
-
-    count = 0;
-    while (str && str[count])
-        count++;
-    return (count);
-}
-
-static void    ft_putstr(char *str)
-{
-    write(1, str, ft_strlen(str));
-}
-
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && *s2)
@@ -29,7 +14,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-int	check_double(char* str)
+int	check_double(char *str)
 {
 	while (str && is_space(*str))
 		str++;
@@ -38,7 +23,7 @@ int	check_double(char* str)
 	while (ft_isdigit(*str))
 		str++;
 	if (*str == '\0')
-		return (1);
+		return (true);
 	if (*str == '.')
 		str++;
 	if (!ft_isdigit(*str))
@@ -46,8 +31,24 @@ int	check_double(char* str)
 	while (ft_isdigit(*str))
 		str++;
 	if (*str == '\0')
-		return (1);
-	return (0);
+		return (true);
+	return (false);
+}
+
+int	check_limits(char *str)
+{
+	if (ft_atol(str) != ft_atoi(str))
+		return (true);
+	return (false);	
+}
+
+int	check_julia_params(char *str1, char *str2)
+{
+	if (!check_double(str1) || !check_double(str2))
+		return (false);
+	else if (check_limits(str1) || check_limits(str2))
+		return (false);
+	return (true);
 }
 
 int	check_fractol(int argc, char **argv, t_fractol* frac)
@@ -57,20 +58,11 @@ int	check_fractol(int argc, char **argv, t_fractol* frac)
 	if (ft_strcmp(argv[1], "Mandelbrot") == 0 && argc == 2)
 		frac->name = "Mandelbrot";
 	else if (ft_strcmp(argv[1], "Julia") == 0 && argc == 4 \
-	&& check_double(argv[2]) && check_double(argv[3]))
+	&& check_julia_params(argv[2], argv[3]))
 		frac->name = "Julia";
 	else if (ft_strcmp(argv[1], "BurningShip") == 0 && argc == 2)
 		frac->name = "BurningShip";
 	else
 		return (ft_error_msg());
-	return (0);
-}
-
-int	ft_error_msg(void)
-{
-    ft_putstr("Wrong input.\n");
-    ft_putstr("Usage: ./fractol <fractol-name>.\n");
-    ft_putstr("Fractol names: Mandelbrot || Julia xx.xx xx.xx\n");
-	ft_putstr("Add float values for the Julia set.\n");
-    return (ERROR);
+	return (false);
 }

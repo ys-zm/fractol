@@ -31,6 +31,7 @@ void    set_mandelbrot_start(t_fractol *frac)
     centre_img(frac);
 }
 
+#include <float.h>
 //---FORMULA FOR MANDELBROT
 // f(new_pos) = (zx + zy)(zx + zy) + (cx + cy)
 int mandelbrot_equation(t_fractol *frac, double x, double y)

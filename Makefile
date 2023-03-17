@@ -14,14 +14,16 @@ SRC_FILES = fractol.c \
 			colour.c \
 			utils.c \
 			resize.c  \
-			burning_ship.c
+			burning_ship.c \
+			check_limits.c \
+			error.c
 
 OBJ_DIR = obj
 SRC_DIR = src
 MLX_DIR = MLX42
 
 INCLUDES = -Iinclude -I$(MLX_DIR)/include
-LIB_MLX = $(MLX_DIR)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+LIB_MLX = $(MLX_DIR)/build/libmlx42.a -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 F_SAN = -g -fsanitize=address
 

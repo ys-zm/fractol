@@ -48,10 +48,11 @@ int choose_equation(t_fractol *frac, double re, double im)
 
 void    draw(t_fractol* frac)
 {
-    int     x;
-    int     y;
+   
     double  re;
     double  im;
+    int     x;
+    int     y;
     int     iter_count;
 
     y = 0;
