@@ -37,7 +37,7 @@ int	check_double(char *str)
 
 int	check_limits(char *str)
 {
-	if (ft_atol(str) != ft_atoi(str))
+	if (ft_atoi(str) > 10 || ft_atoi(str) < -10)
 		return (true);
 	return (false);	
 }

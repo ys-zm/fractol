@@ -1,7 +1,14 @@
 #include "fractol.h"
 
-void    set_burningship_start(t_fractol *frac)
+//Default settings for Mandelbrot
+//Only set width and height if it is the start setting
+void    set_burningship_start(t_fractol *frac, int if_start_set)
 {
+    if (if_start_set)
+    {
+        frac->win_size.width = 1080;
+        frac->win_size.height = 700;
+    }
     frac->iter = 100;
     frac->x_ends.start = -2;
     frac->x_ends.end = 2;
@@ -9,8 +16,6 @@ void    set_burningship_start(t_fractol *frac)
     frac->y_ends.end = -2;
     frac->pix.x = 0;
     frac->pix.y = 0;
-    frac->win_size.width = 1080;
-    frac->win_size.height = 700;
     frac->flag = 0;
     frac->org.im = 0;
     frac->org.re = 0;
@@ -32,8 +37,8 @@ int burningship_equation(t_fractol *frac, double x, double y)
     while((re * re) + (im * im) <= 4 && iter_count < frac->iter)
     {   
         store_re = re;
-        re = (re * re) - (im * im) + x;
-        im = fabs(2 * store_re * im) + y;
+        re = (re * re) - (im * im) - x;
+        im = fabs(2 * store_re * im) - y;
         iter_count++;
     }
     return (iter_count);

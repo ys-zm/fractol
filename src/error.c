@@ -20,6 +20,6 @@ int	ft_error_msg(void)
     ft_putstr("Wrong input.\n");
     ft_putstr("Usage: ./fractol <fractol-name> <julia: additional-parameters>.\n");
     ft_putstr("Fractol names: Mandelbrot || Julia xx.xx xx.xx || BurningShip\n");
-	ft_putstr("Add float values for the Julia set (between MIN_ & MAX_ INT).\n");
+	ft_putstr("Add float values for the Julia set (between 10 and -10).\n");
     return (true);
 }

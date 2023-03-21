@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:27 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/06 16:25:59 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/21 15:51:48 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int     smallest(int x, int y);
 int     ft_isdigit(char c);
 int	    is_space(char c);
 double  ft_atod(char *str);
-long    ft_atol(const char *str);
 int     ft_atoi(const char *str);
 
 //------------KEYS AND SCROLL HOOKS------------//
@@ -96,11 +95,11 @@ void    nav_mouse_hooks(void *param);
 void    resize_window(int32_t width, int32_t height, void *param);
 
 //------------FRACTAL CALCULATIONS------------//
-void    set_mandelbrot_start(t_fractol  *frac);
-void    set_julia_start(t_fractol *frac, char **argv);
+void    set_mandelbrot_start(t_fractol *frac, int if_start_set);
+void    set_julia_start(t_fractol *frac, char **argv, int if_start_set);
 int     mandelbrot_equation(t_fractol *frac, double x, double y);
 int     julia_equation(t_fractol* frac, double x, double y);
-void    set_burningship_start(t_fractol *frac);
+void    set_burningship_start(t_fractol *frac, int if_start_set);
 int     burningship_equation(t_fractol *frac, double x, double y);
 void    reset(t_fractol *frac);
 

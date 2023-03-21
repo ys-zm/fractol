@@ -33,30 +33,3 @@ int	ft_atoi(const char *str)
 	}
 	return (x * sign);
 }
-
-long	ft_atol(const char *str)
-{
-	long	x;
-	int		sign;
-
-	x = 0;
-	sign = 1;
-	while (is_space(*str))
-		str++;
-	while (*str == '0')
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (*str == '0')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		x = (x * 10) + (*str - '0');
-		str++;
-	}
-	return (x * sign);
-}

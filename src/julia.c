@@ -6,18 +6,25 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:31:57 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/06 15:53:27 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/21 15:50:08 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void    set_julia_start(t_fractol* frac, char **argv)
+//Default settings for Julia
+//Only set width and height if it is the start setting
+void    set_julia_start(t_fractol* frac, char **argv, int if_start_set)
 {
     if (argv)
     {
         frac->curr.re = ft_atod(argv[2]);
         frac->curr.im = ft_atod(argv[3]);
+    }
+    if (if_start_set)
+    {
+        frac->win_size.width = 1080;
+        frac->win_size.height = 700;
     }
     frac->iter = 100;
     frac->x_ends.start = -2;
@@ -29,8 +36,6 @@ void    set_julia_start(t_fractol* frac, char **argv)
     frac->org.re = frac->curr.re;
     frac->org.im = frac->curr.im;
     frac->flag = 0;
-    frac->win_size.width = 1080;
-    frac->win_size.height = 700;
     centre_img(frac);
 }
 

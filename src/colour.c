@@ -2,8 +2,8 @@
 
 uint32_t    make_colours(int iter_count)
 {
-    int r = 1 * iter_count;
-    int g = 2 * iter_count;
+    int r = 2 * iter_count;
+    int g = 1 * iter_count;
     int b = 6 * iter_count;
     int a = 255;
 

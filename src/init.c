@@ -3,9 +3,9 @@
 void	set_settings(t_fractol* frac, char **argv)
 {
 	if (ft_strcmp(frac->name, "Mandelbrot") == 0)
-		set_mandelbrot_start(frac);
+		set_mandelbrot_start(frac, 1);
 	else if (ft_strcmp(frac->name, "Julia") == 0)
-		set_julia_start(frac, argv);
+		set_julia_start(frac, argv, 1);
 	else
 		set_burningship_start(frac);
 }
