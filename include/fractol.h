@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:27 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/21 15:51:48 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/23 19:06:55 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ typedef struct s_ends
     double  end;
 }   t_ends;
 
-union rgba
+typedef struct s_rgba
 {
     int r;
     int g;
     int b;
     int a;
-};
+}   t_rgba;
 
 typedef struct s_coord
 {
@@ -73,6 +73,8 @@ typedef struct s_fractol
     t_coord         org;
     size_t          flag;
     t_window        win_size;
+    t_rgba          colours;
+    
     
 }   t_fractol;
 
@@ -111,6 +113,8 @@ void    centre_img(t_fractol *frac);
 
 //------------COLOUR SETTINGS------------//
 void    colour_fractal(t_fractol *frac, int x, int y, int iter_count);
+void    set_rgba(t_fractol *frac);
+void    shift_colours(t_fractol *frac, int key);
 
 //------------ERROR------------//
 int     check_fractol(int argc, char **argv, t_fractol *frac);

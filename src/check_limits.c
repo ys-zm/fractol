@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   check_limits.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yzaim <marvin@codam.nl>                      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/03/23 18:32:55 by yzaim         #+#    #+#                 */
+/*   Updated: 2023/03/23 18:33:40 by yzaim         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	is_space(char c)
@@ -6,9 +18,9 @@ int	is_space(char c)
 		|| c == '\n' || c == '\v' || c == '\f');
 }
 
-int ft_isdigit(char c)
+int	ft_isdigit(char c)
 {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
 int	ft_atoi(const char *str)

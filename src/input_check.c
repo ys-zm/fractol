@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   input_check.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yzaim <marvin@codam.nl>                      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/03/23 19:50:00 by yzaim         #+#    #+#                 */
+/*   Updated: 2023/03/23 19:50:54 by yzaim         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -39,7 +51,7 @@ int	check_limits(char *str)
 {
 	if (ft_atoi(str) > 10 || ft_atoi(str) < -10)
 		return (true);
-	return (false);	
+	return (false);
 }
 
 int	check_julia_params(char *str1, char *str2)
@@ -51,7 +63,7 @@ int	check_julia_params(char *str1, char *str2)
 	return (true);
 }
 
-int	check_fractol(int argc, char **argv, t_fractol* frac)
+int	check_fractol(int argc, char **argv, t_fractol *frac)
 {
 	if (argc < 2)
 		return (ft_error_msg());

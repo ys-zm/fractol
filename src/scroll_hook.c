@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:31:53 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/06 15:58:43 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/23 19:45:41 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	zoom_out_x(t_fractol *frac, double re, int x)
 	new_range = range + add_on;
 	prop = (double)x / frac->win_size.width;
 	frac->x_ends.start = re - prop * new_range;
-	frac->x_ends.end = frac->x_ends.start + new_range; 
+	frac->x_ends.end = frac->x_ends.start + new_range;
 }
 
 void	zoom_scroll(double ydelta, double xdelta, void *param)
