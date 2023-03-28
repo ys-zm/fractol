@@ -23,31 +23,35 @@ SRC_DIR = src
 MLX_DIR = MLX42
 
 INCLUDES = -Iinclude -I$(MLX_DIR)/include
-LIB_MLX = $(MLX_DIR)/build/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+LIB_MLX = $(MLX_DIR)/build/libmlx42.a
+MLX_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 F_SAN = -g -fsanitize=address
 
-OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC_FILES:.c=.o)))
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
-all: libmlx $(NAME)
+all: $(NAME)
 
-libmlx:
-	cmake MLX42 -B ./MLX42/build
-	cmake --build ./MLX42/build -j4 
+$(LIB_MLX):
+	@cmake MLX42 -B ./MLX42/build
+	@cmake --build ./MLX42/build -j4
 
 debug: $(NAME) dlibmlx
 
 dlibmlx:
 	cmake MLX42 -B ./MLX42/build -DDEBUG=1
-	cmake --build ./MLX42/build -j4 
+	cmake --build ./MLX42/build -j4
 
-$(NAME): $(OBJ)
-	$(CC) $^ $(LIB_MLX) $(INCLUDES) -o $@
+$(NAME): $(OBJ) $(LIB_MLX)
+	@$(CC) $(C_FLAGS) $^ $(LIB_MLX) $(MLX_FLAGS) $(INCLUDES) -o $@
+	@echo "fractol made!"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(OBJ_DIR)
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(C_FLAGS) $(INCLUDES) -c $< -o $@
-
+	
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(LIBMLX)/build

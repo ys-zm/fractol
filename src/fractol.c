@@ -6,11 +6,16 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 19:33:08 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:34:01 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/28 19:38:23 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	ft_leaks(void)
+{
+	system("leaks -q fractol");
+}
 
 void	hook_calls(t_fractol *frac)
 {
@@ -24,6 +29,7 @@ int32_t	main(int argc, char **argv)
 {
 	t_fractol	frac;
 
+	atexit(&ft_leaks);
 	if (check_fractol(argc, argv, &frac))
 		return (ERROR);
 	set_settings(&frac, argv);
