@@ -15,7 +15,7 @@ SRC_FILES = fractol.c \
 			utils.c \
 			resize.c  \
 			burning_ship.c \
-			check_limits.c \
+			atoi.c \
 			error.c
 
 OBJ_DIR = obj

@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 19:50:00 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:50:54 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/29 13:09:26 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_double(char *str)
 
 int	check_limits(char *str)
 {
-	if (ft_atoi(str) > 10 || ft_atoi(str) < -10)
+	if (ft_atoi(str) > 2 || ft_atoi(str) < -2)
 		return (true);
 	return (false);
 }

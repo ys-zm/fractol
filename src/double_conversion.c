@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:40 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/28 22:15:21 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/29 11:57:35 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static double	find_decimals(char *str)
 {
 	double	decimals;
 	double	decimal_place;
-	
+
 	decimals = 0;
 	decimal_place = 1;
 	while (*str != '.' && *str)

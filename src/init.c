@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 19:46:46 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:49:23 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/29 13:57:03 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ size_t	init_frac(t_fractol *frac)
 	frac->img = mlx_new_image(frac->mlx, width, height);
 	if (!(frac->img))
 		return (ERROR);
-	draw(frac);
 	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 	return (0);
 }

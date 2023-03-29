@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:31:53 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:45:41 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/29 13:56:43 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,10 @@ void	zoom_scroll(double ydelta, double xdelta, void *param)
 	{
 		zoom_in_x(frac, x_coord, x);
 		zoom_in_y(frac, y_coord, y);
-		draw(frac);
 	}
 	else
 	{
 		zoom_out_x(frac, x_coord, x);
 		zoom_out_y(frac, y_coord, y);
-		draw(frac);
 	}
 }
