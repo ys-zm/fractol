@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 19:20:44 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/29 13:09:07 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:37:17 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	ft_putstr(char *str)
 	write(1, str, ft_strlen(str));
 }
 
+/* Error message for invalid input */
 int	ft_error_msg(void)
 {
 	ft_putstr("Wrong input.\n");

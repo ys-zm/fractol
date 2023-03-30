@@ -6,12 +6,14 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 19:27:40 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/29 13:56:48 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:49:48 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* Function to centralize the fractal in the window 
+depending on width & height */
 void	centre_img(t_fractol *frac)
 {
 	double	range_y;
@@ -37,6 +39,7 @@ void	centre_img(t_fractol *frac)
 	}
 }
 
+/* Function to resize the window */
 void	resize_window(int32_t width, int32_t height, void *param)
 {
 	t_fractol	*frac;
@@ -46,8 +49,8 @@ void	resize_window(int32_t width, int32_t height, void *param)
 	{
 		frac->win_size.width = width;
 		frac->win_size.height = height;
-		mlx_resize_image(frac->img, frac->win_size.width, frac->win_size.height);
+		mlx_resize_image(frac->img, frac->win_size.width, \
+		frac->win_size.height);
 		centre_img(frac);
 	}
 }
-

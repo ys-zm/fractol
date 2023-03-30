@@ -64,4 +64,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-# gcc src/fractol.c MLX42/build/libmlx42.a  -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -IMLX42/include -Iinclude

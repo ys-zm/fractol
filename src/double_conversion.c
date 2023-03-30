@@ -6,12 +6,13 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:40 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/29 11:57:35 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:37:44 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* Find numbers after the decimal place */
 static double	find_decimals(char *str)
 {
 	double	decimals;
@@ -32,6 +33,9 @@ static double	find_decimals(char *str)
 	return (decimals);
 }
 
+/* Function to convert strings to doubles
+Subtracts decimal place for negative numbers
+Adds decminal places for positive numbers */
 double	ft_atod(char *str)
 {
 	int		x;

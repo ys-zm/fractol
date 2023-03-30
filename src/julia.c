@@ -6,14 +6,14 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:31:57 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:51:57 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:47:16 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//Default settings for Julia
-//Only set width and height if it is the start setting
+/* Default settings for Julia set
+Only set width and height if it is the start setting */
 void	set_julia_start(t_fractol *frac, char **argv, int if_start_set)
 {
 	if (argv)
@@ -40,7 +40,8 @@ void	set_julia_start(t_fractol *frac, char **argv, int if_start_set)
 	centre_img(frac);
 }
 
-// the +c is the same for all pixel coordinates
+/* Equation for Julia set: F(X) = Z^2 + C
+ The C value is the same for all pixel coordinates */
 int	julia_equation(t_fractol *frac, double x, double y)
 {
 	int		iter_count;

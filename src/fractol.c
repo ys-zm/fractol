@@ -6,7 +6,7 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 19:33:08 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/29 12:28:50 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:37:13 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	hook_calls(t_fractol *frac)
 	mlx_scroll_hook(frac->mlx, &zoom_scroll, frac);
 }
 
+/* Main function */
 int32_t	main(int argc, char **argv)
 {
 	t_fractol	frac;

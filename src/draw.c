@@ -6,12 +6,13 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:12 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:19:53 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:37:36 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* Function to convert pixel point to coordinate point along the X axis */
 double	pix_to_coord_x(double start, double end, int pix, t_fractol *frac)
 {
 	double	coord;
@@ -22,6 +23,7 @@ double	pix_to_coord_x(double start, double end, int pix, t_fractol *frac)
 	return (coord);
 }
 
+/* Function to convert pixel point to coordinate point along the Y axis */
 double	pix_to_coord_y(double start, double end, int pix, t_fractol *frac)
 {
 	double	coord;
@@ -32,6 +34,7 @@ double	pix_to_coord_y(double start, double end, int pix, t_fractol *frac)
 	return (coord);
 }
 
+/* Function to call the equation for each fractal */
 int	choose_equation(t_fractol *frac, double re, double im)
 {
 	int	iter_count;
@@ -46,6 +49,8 @@ int	choose_equation(t_fractol *frac, double re, double im)
 	return (iter_count);
 }
 
+/* Function to draw the fractal by calculating the iter_count for 
+each pixel in the window and colours it with colour_fractal() */
 void	draw(t_fractol *frac)
 {
 	double	re;

@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:31:53 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/29 13:56:43 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:51:41 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ static void	zoom_out_x(t_fractol *frac, double re, int x)
 	frac->x_ends.end = frac->x_ends.start + new_range;
 }
 
+/* Scroll hook to scroll according to the mouse position
+Mouse input is taken to determine mouse position
+The increase/ decrease of the start/ end points of the axes 
+depends on the proportion of the mouse position to the side of the window */
 void	zoom_scroll(double ydelta, double xdelta, void *param)
 {
 	t_fractol	*frac;

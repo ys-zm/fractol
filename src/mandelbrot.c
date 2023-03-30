@@ -6,14 +6,14 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:07 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:06:42 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:48:53 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//Default settings for Mandelbrot
-//Only set width and height if it is the start setting
+/* Default settings for Mandelbrot
+Only set width and height if it is the start setting */
 void	set_mandelbrot_start(t_fractol *frac, int if_start_set)
 {
 	if (if_start_set)
@@ -37,8 +37,9 @@ void	set_mandelbrot_start(t_fractol *frac, int if_start_set)
 	centre_img(frac);
 }
 
-//---FORMULA FOR MANDELBROT
-// f(new_pos) = (zx + zy)(zx + zy) + (cx + cy)
+/* Equation for Mandelbrot set: F(X) = Z^2 + C
+ Becomes: F(X) = (ZX + ZY)^2 + (CX + CY) 
+ The C value is the original position of the point */
 int	mandelbrot_equation(t_fractol *frac, double x, double y)
 {
 	int		iter_count;

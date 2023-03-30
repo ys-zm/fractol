@@ -6,12 +6,13 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 20:02:56 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/29 14:00:57 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:46:37 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* Hook to navigate around the fractal with arrow keys */
 static void	navigate(t_fractol *frac)
 {
 	if (mlx_is_key_down(frac->mlx, MLX_KEY_RIGHT))
@@ -24,6 +25,7 @@ static void	navigate(t_fractol *frac)
 		frac->pix.y -= (frac->y_ends.start - frac->y_ends.end) * 0.1;
 }
 
+/* Mouse hook to change +C value for Julia set based on mouse_input */
 static void	mouse_input(t_fractol *frac)
 {
 	int32_t		x;
@@ -59,6 +61,13 @@ void	nav_mouse_hooks(void *param)
 	draw(frac);
 }
 
+/* Key functionality
+F: Swich between Julia & Mandelbrot
+ESP: Close window
+I: Increment maximum iterations 
+O: Decrement maximum iterations
+R / G / B / T: Increment RGBA values respectively
+D: Return to default settings of fractal */
 void	key_hooks(mlx_key_data_t keydata, void *param)
 {
 	t_fractol	*frac;

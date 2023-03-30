@@ -6,14 +6,14 @@
 /*   By: yzaim <marvin@codam.nl>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 18:28:39 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/23 19:44:45 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 11:26:18 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//Default settings for Mandelbrot
-//Only set width and height if it is the start setting
+/*Default settings for BurningShip
+Only setting width and height if it is the start setting*/
 void	set_burningship_start(t_fractol *frac, int if_start_set)
 {
 	if (if_start_set)
@@ -56,23 +56,3 @@ int	burningship_equation(t_fractol *frac, double x, double y)
 	}
 	return (iter_count);
 }
-
-// int burningship_equation(t_fractol *frac, double x, double y)
-// {
-//     int     iter_count;
-//     double  store_re;
-//     double  re;
-//     double  im;
-
-//     re = x;
-//     im = y;
-//     iter_count = 0;
-//     while((re * re) + (im * im) <= 25 && iter_count < frac->iter)
-//     {   
-//         store_re = re;
-//         re = pow(re, 2) - pow(im, 4) + x;
-//         im = 5 * store_re * im + y;
-//         iter_count++;
-//     }
-//     return (iter_count);
-// }
