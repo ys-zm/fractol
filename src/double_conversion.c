@@ -6,7 +6,7 @@
 /*   By: yzaim <yzaim@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 17:32:40 by yzaim         #+#    #+#                 */
-/*   Updated: 2023/03/30 11:37:44 by yzaim         ########   odam.nl         */
+/*   Updated: 2023/03/30 13:43:57 by yzaim         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ double	ft_atod(char *str)
 		num = (double)ft_atoi(str) - find_decimals(str);
 	else
 		num = (double)ft_atoi(str) + find_decimals(str);
+	if (x == 0 && *str == '-')
+		num *= -1;
 	return (num);
 }
