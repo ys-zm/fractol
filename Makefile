@@ -1,6 +1,6 @@
 NAME = fractol
-CC = gcc
-C_FLAGS = -Wall -Wextra -Werror -Ofast
+CC = cc
+C_FLAGS = -Wall -Wextra -Werror -Ofast -arch arm64
 
 SRC_FILES = fractol.c \
 			input_check.c \
@@ -24,9 +24,15 @@ MLX_DIR = MLX42
 
 INCLUDES = -Iinclude -I$(MLX_DIR)/include
 LIB_MLX = $(MLX_DIR)/build/libmlx42.a
-MLX_FLAGS = -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+# MLX_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
-F_SAN = -g -fsanitize=address
+#F_SAN = -g -fsanitize=address
+
+ifeq ($(shell uname -m),arm64)
+MLX_FLAGS = -L/opt/homebrew/lib -lglfw -framework IOKit -framework Cocoa
+else ifeq ($(shell uname -m),x86_64)
+MLX_FLAGS = -lglfw3 -framework IOKit -framework Cocoa
+endif
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
