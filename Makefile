@@ -24,7 +24,6 @@ MLX_DIR = MLX42
 
 INCLUDES = -Iinclude -I$(MLX_DIR)/include
 LIB_MLX = $(MLX_DIR)/build/libmlx42.a
-# MLX_FLAGS = -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 
 #F_SAN = -g -fsanitize=address
 
